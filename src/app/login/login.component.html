@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+  
+<div class="container">
+  <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+      <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text" class="form-control" name="Name" placeholder="Enter your Name" formControlName="Name" [ngClass]="{'is-invalid':form.get('Name').touched &&  form.get('Name').invalid}">
+          <div class="invalid-feedback">
+            <div >Name is required</div>
+           
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" placeholder="Enter the password" formControlName="Password" [ngClass]="{'is-invalid':form.get('Password').touched &&  form.get('Password').invalid}" >
+        <div class="invalid-feedback" *ngIf="form.get('Password').touched &&  form.get('Password').invalid">
+            <div *ngIf="form.get('Password').errors.required">Password is required</div>
+            <div *ngIf="form.get('Password').errors.minlength">Password length must be minimum 6 characters</div>
+           
+        </div>
+    </div>
+      
+      <button class="btn btn-success" [disabled]="!form.valid">Login</button>
+  </form>
+</div>
+</body>
+</html>
